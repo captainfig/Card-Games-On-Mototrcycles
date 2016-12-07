@@ -1,6 +1,6 @@
-''''
+'''
 This file is designed to handle all db access
-''''
+'''
 
 import sqlite3, constants as C
 
