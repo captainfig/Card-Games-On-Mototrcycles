@@ -1,7 +1,8 @@
 import constants as C
 import random, sqlite3
 class Player():
-	def __init__(self, deck):
+	def __init__(self, name, deck):
+		self.name = name
 		self.deck = deck;
 		self.hand = []
 
@@ -18,6 +19,12 @@ class Player():
 
 	def getHand(self):
 		return self.hand
+
+	def getDeck(self):
+		return self.deck
+
+	def getName(self):
+		return self.name
 
 	def startGame(self):
 		self.initialShuffle()

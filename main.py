@@ -1,15 +1,18 @@
 import constants as C
-import random, sqlite3, player, parse
+import random, sqlite3, player, parse, field
 
 deck=[1,2,3,4,5,6,7,8,9,10] # Because only 10 cards exist, use placeholder deck
 
 # Create deck for players
-player1 = player.Player(deck) 
-player2 = player.Player(deck)
+player1 = player.Player("Yugi", deck) 
+player2 = player.Player("Kaiba", deck)
 
 # Start game for players
 player1.startGame()
 player2.startGame()
+
+field1 = field.Field(player1)
+field2 = field.Field(player2)
 
 # Print hands of both players (for demo purposes)
 print("Player 1")
