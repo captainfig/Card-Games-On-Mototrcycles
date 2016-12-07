@@ -13,6 +13,6 @@ player2.startGame()
 
 # Print hands of both players (for demo purposes)
 print("Player 1")
-parse.printHand(player1.hand)
+parse.printHand(player1.getHand())
 print("Player 2")
-parse.printHand(player2.hand)
+parse.printHand(player2.getHand())
