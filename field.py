@@ -11,7 +11,3 @@ class Field:
 
 	def getField(self):
 		return field
-
-	def toString(self):
-		return str(self.player.getName()) + '\'s Field: ' + self.getField() + '| DECK: ' + len(self.player.getDeck()) +
-		'| HAND: ' + len(self.player.getHand())

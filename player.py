@@ -1,21 +1,10 @@
 import constants as C
-import random, sqlite3
+import random, sqlite3, deck
 class Player():
-	def __init__(self, name, deck):
+	def __init__(self, name, deckList):
 		self.name = name
-		self.deck = deck;
+		self.deck = deck.Deck(deckList, self);
 		self.hand = []
-
-	def initialShuffle(self):
-		self.deck = random.sample(self.deck, len(self.deck))
-
-	def initialDraw(self):
-		while len(self.hand) < C.HAND_SIZE:
-			self.drawCard()
-
-	def drawCard(self):
-		self.hand.append(self.deck[0])
-		self.deck.remove(self.deck[0])
 
 	def getHand(self):
 		return self.hand
@@ -27,6 +16,14 @@ class Player():
 		return self.name
 
 	def startGame(self):
-		self.initialShuffle()
-		self.initialDraw()
+		self.deck.shuffle()
+		self.deck.drawCard(3)
+
+	def printHand(self):
+		str = self.hand[0].toString()
+		for i in range(len(self.hand)):
+			if i > 0:
+				str += ' | ' + self.hand[i].toString()
+		return str
+
 
