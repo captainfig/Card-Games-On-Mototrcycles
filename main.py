@@ -14,8 +14,11 @@ player2.startGame()
 field1 = field.Field(player1)
 field2 = field.Field(player2)
 
-# Print hands of both players (for demo purposes)
-print("Player 1")
-print(player1.printHand())
-print("Player 2")
+# Print hands of both players
+def handDemo():
+	print("Player 1")
+	print(player1.printHand())
+	print("Player 2")
 
+def cardEffectDemo():
+	pass
