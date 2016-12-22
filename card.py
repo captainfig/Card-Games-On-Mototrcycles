@@ -10,8 +10,4 @@ class Card():
 		self.flavor = cardInfo[C._FLAVOR]
 
 	def toString(self):
-		return "Level " + str(self.power) + " " + self.name
-
-	def activate(self):
-		pass
-		# this will activate the script associated with the card id
+		return self.name

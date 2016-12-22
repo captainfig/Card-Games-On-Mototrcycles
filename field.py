@@ -1,9 +1,8 @@
 class Field:
-	def __init__(self, player):
+	def __init__(self):
 		self.field = []
-		self.player = player
 
-	def summonCreature(self, card):
+	def playCard(self, card):
 		self.field.append(card)
 
 	def gameInfo(self):
@@ -11,3 +10,7 @@ class Field:
 
 	def getField(self):
 		return field
+
+	def printField(self):
+		for i in range(len(self.field)):
+			print("Field: ["+str(i)+"]("+str(self.field[i].power)+") "+self.field[i].name+" | ")
