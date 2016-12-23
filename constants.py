@@ -1,11 +1,11 @@
-HAND_SIZE = 3
-
 # Card Index
-_ID = 0
-_NAME = 1
-_TYPE = 2
-_POWER = 3
-_FLAVOR = 4
+CARD_ID = 0
+CARD_NAME = 1
+FLAVOR_TEXT = 2
+CARD_IMAGE = 3
 
 # Deck Size
 DECK_SIZE = 20
+
+# Hand Size
+HAND_SIZE = 3
