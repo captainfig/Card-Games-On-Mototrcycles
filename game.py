@@ -22,14 +22,20 @@ class cardLayer(cocos.layer.ColorLayer):
 		self.displayHand()
 
 	def displayHand(self):
-		j = 0
-		for i in self.player.hand.hand:
-			card = i.image
+		hand = self.player.hand.hand
+		for i in range(len(self.player.hand.hand)):
+			card = hand[i].image
 			sprite = cocos.sprite.Sprite(card)
-			sprite.scale = 0.5
-			sprite.position = (j * 200), 240
+			sprite.scale = 0.3
+			sprite.position = (i * 200 + 100), 240
 			self.add(sprite, z=1)
-			j += 1
+
+			label = cocos.text.Label(hand[i].name,
+			font_name='Times New Roman',
+			font_size=14,
+			anchor_x='center', anchor_y='center')
+			label.position = (i * 200 + 100), 390
+			self.add(label)
 
 cocos.director.director.init(1600, 900)
 player1 = player.Player("Yugi", [1, 2, 3, 4, 5])
