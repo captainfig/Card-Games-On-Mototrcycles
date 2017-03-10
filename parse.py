@@ -16,6 +16,6 @@ def getCard(cardID):
 
 # Admin commands
 
-def createCard(id, name, flavor, type, effect1, effect2, effect3):
-    card = (id, name, flavor, type, effect1, effect2, effect3)
-    c.execute("INSERT INTO cards VALUES (?,?,?,?,?,?,?)", card)
+def createCard(id, name, image, card_type, attribute, atk, defs, effect):
+    card = (id, name, image, card_type, attribute, atk, defs, effect)
+    c.execute("INSERT INTO cards VALUES (?,?,?,?,?,?,?,?)", card)

@@ -10,7 +10,7 @@ field1 = field.Field()
 
 def gameStart():
 	# Function that creates player, deck, and hand objects, shuffles the deck and draws a starting hand
-	deckList=[1,2,3,4,5,6,7,8,9,10] # Because only 10 cards exist, use placeholder deck
+	deckList=[1,2,3,4,1,2,3,4] # Because only 10 cards exist, use placeholder deck
 
 	# Create deck for players
 	player1 = player.Player("Yugi", deckList) 
