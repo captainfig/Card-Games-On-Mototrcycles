@@ -30,29 +30,23 @@ class cardLayer(cocos.layer.Layer):
 		card_bg = cocos.sprite.Sprite("cards/cardtemp.png")
 		card_bg.position = ((hand_slot * 210+300), 146)
 		self.add(card_bg)
-		name = cocos.text.Label(card.name, 
-				font_name='Times New Roman',
-				font_size=14,
-				bold=True,
-				color=(0, 0, 0, 255),
-				anchor_x='left', anchor_y='top')
+		name = self.createLabel(card.name)
 		name.position = (card_bg.x-90, card_bg.y+126)
-		attack = cocos.text.Label(str(card.attack),
-			font_name='Times New Roman',
-			font_size=12,
-			color=(0,0,0,255),
-			anchor_x='left', anchor_y='top'
-			)
+		attack = self.createLabel(card.attack)
 		attack.position = (card_bg.x+32, card_bg.y-79)
-		defense = cocos.text.Label(str(card.defense),
-			font_name='Times New Roman',
-			font_size=12,
-			color=(0,0,0,255),
-			anchor_x='left', anchor_y='top')
+		defense = self.createLabel(card.defense)
 		defense.position = (card_bg.x+32, card_bg.y-99)
 		self.add(name)
 		self.add(attack)
 		self.add(defense)
+
+	def createLabel(self, info):
+		label = cocos.text.Label(str(info),
+			font_name='Times New Roman',
+			font_size=12,
+			color=(0,0,0,255),
+			anchor_x='left', anchor_y='top')
+		return label
 
 
 cocos.director.director.init(1600, 900)
@@ -60,7 +54,6 @@ player1 = player.Player("Yugi", [1, 2, 3, 4])
 player1.startGame()
 bgLayer = bgLayer()
 hello_layer = cardLayer(player1)
-#hello_layer.do(RotateBy(360, duration=10))
 
 main = cocos.scene.Scene(bgLayer, hello_layer)
 

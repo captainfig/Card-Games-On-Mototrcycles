@@ -1,24 +1,31 @@
-class Field:
+class Field():
 	def __init__(self):
-		self.field = [[Zone("monster") for x in range(5)] for y in range(2)]
+		self.field = [Zone() for x in range(5)]
 
 	def playCard(self, card):
-		for x in range(len(self.field)):
-			pass
+		x = 0
+		while not self.field[x].isEmpty():
+			x = x+1
+		self.field[x].playCard(card)
+
+	def destroyCard(self, card):
+		for zone in self.field:
+			if zone.getCard() == card:
+				zone.clearCard()
 
 	def gameInfo(self):
 		return [len(self.player.getDeck()), len(self.player.getHand())]
 
 	def getField(self):
-		return field
+		return self.field
 
 	def printField(self):
-		for i in range(len(self.field)):
-			print("Field: ["+str(i)+"]("+str(self.field[i].power)+") "+self.field[i].name+" | ")
+		for zone in self.field:
+			if not zone.isEmpty():
+				print(zone.getCard().name)
 
 class Zone():
-	def __init__(self, card_type):
-		self.card_type = card_type;
+	def __init__(self):
 		self.contained_card = None;
 
 	def playCard(self, card):
@@ -27,6 +34,22 @@ class Zone():
 	def clearCard(self):
 		self.contained_card = None;
 
-	def isEmpty():
-		if(contained_card is None):
-			return true;
+	def getCard(self):
+		return self.contained_card
+
+	def isEmpty(self):
+		return self.contained_card is None
+
+class Grave():
+	def __init__(self):
+		self.grave = []
+
+	def sendToGrave(self, card):
+		self.grave.append(card)
+
+	def getGrave(self):
+		return self.grave
+
+	def printGrave(self):
+		for card in self.grave:
+			print(card.name)
