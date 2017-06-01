@@ -1,56 +1,62 @@
 import constants as C
-import random, sqlite3, card, parse
+import random, card
 
 class Player():
 	def __init__(self, name, deckList):
 		self.name = name
 		self.deck = Deck(deckList);
-		self.hand = []
-		self.drawRate = 1
-
-	def getHand(self):
-		return self.hand
-
-	def getDeck(self):
-		return self.deck.deck
-
-	def getName(self):
-		return self.name
-
-	def getDrawRate(self):
-		return self.drawRate;
+		self.hand = Hand()
+		self.grave = Grave()
 
 	def drawCard(self, n):
 		for i in range(n):
-			self.hand.append(self.deck.getCard(0)) # Pop top card, append to hand
-
-	def popCard(self, card):
-		self.hand.remove(card)
+			self.hand.addCard(self.deck.getCard(0)) # Pop top card, append to hand
 
 	def shuffleDeck(self):
 		self.deck.shuffle()
 
-	def printHand(self):
-		handStr = ''
-		for i in range(len(self.hand)):
-			handStr += self.hand[i].name + ', '
-		return handStr	
+class Hand:
+	def __init__(self):
+		self.contents = []
+
+	def addCard(self, card):
+		self.contents.append(card)
+
+	def removeCard(self, card):
+		self.contents.remove(card)
+
+	def printContents(self):
+		i = 0
+		for card in self.contents:
+			print("[" + str(i) + "] " + card.name)
+			i = i + 1
 
 class Deck:
 	def __init__(self, deckList):
 		self.deckList = deckList
-		self.deck = []
+		self.contents = []
 		for cardID in self.deckList:
-			self.deck.append(card.Card(parse.getCard(cardID)))
+			self.contents.append(card.Card(card.getCardInfo(cardID)))
 
 	def shuffle(self):
-		self.deck = random.sample(self.deck, len(self.deck))
+		self.contents = random.sample(self.contents, len(self.contents))
 
 	def getCard(self, index):
-		return self.deck.pop(index); # Get any card by its placement in the deck
+		return self.contents.pop(index); # Get any card by its placement in the deck
 
 	def printContents(self):
 		i = 0
-		for card in self.deck:
+		for card in self.contents:
 			print("[" + str(i) + "] " + card.name)
 			i = i + 1
+
+class Grave():
+	def __init__(self):
+		self.contents = []
+
+	def sendToGrave(self, card):
+		self.contents.append(card)
+
+	def printContents(self):
+		for card in self.contents:
+			print(card.name)

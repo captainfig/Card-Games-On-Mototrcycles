@@ -1,4 +1,15 @@
-import constants as C, player, parse, random
+import constants as C, sqlite3
+
+con = sqlite3.connect('cards.db')
+s = con.cursor()
+
+# Helper command to get a card from the database
+
+def getCardInfo(cardID):
+	query = s.execute("SELECT * FROM {table} WHERE {idf}={my_id}".
+		format(table="cards", idf='ID', my_id=cardID))
+	return list(s.fetchone())
+
 
 class Card():
 	"""docstring for Card"""

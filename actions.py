@@ -6,7 +6,7 @@ import player, field
 
 ## There is probably a way to make this so that player, field, and grave are not passed to each individual action
 
-class Turn():
+class ActionLog():
 	def __init__(self):
 		self.actions = []
 
@@ -14,7 +14,7 @@ class Turn():
 		self.actions.append(action)
 
 	def pop(self):
-		self.actions.pop()
+		self.actions.pop().action()
 
 	def is_empty(self):
 		return (self.actions == [])
@@ -26,36 +26,42 @@ class Action():
 	def action(self):
 		pass
 
-class DrawCard(Action):
-	def __init__(self, player, n):
-		super().__init__(player)
-		self.action(n)
+	def response(self):
+		pass
 
-	def action(self, n):
-		self.player.drawCard(n)
+class DrawHand(Action):
+	def action(self):
+		self.player.drawCard(3)
+
+class DrawCard(Action):
+	def action(self):
+		self.player.drawCard(1)
 
 class PlayCardFromHand(Action):
-	def __init__(self, player, field, card):
+	def __init__(self, player, field, card, zone):
 		super().__init__(player)
 		self.field = field
 		self.card = card
-		self.action()
+		self.zone = zone
+
+	def response(self):
+		pass
+		
 
 	def action(self):
-		self.player.popCard(self.card)
-		self.field.playCard(self.card)
+		self.player.hand.removeCard(self.card)
+		self.field.playCard(self.card, self.zone)
 
 class DestroyCard(Action):
-	def __init__(self, player, field, card, grave):
+	def __init__(self, player, field, zone):
 		super().__init__(player)
 		self.field = field
-		self.card = card
-		self.grave = grave
-		self.action()
+		self.zone = zone
 
 	def action(self):
-		self.field.destroyCard(self.card)
-		self.grave.sendToGrave(self.card)
+		self.player.grave.sendToGrave(self.field.field[self.zone].contents)
+		self.field.destroyCard(self.zone)
+		
 
 
 

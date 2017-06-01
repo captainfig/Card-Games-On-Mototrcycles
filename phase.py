@@ -16,17 +16,24 @@ class Turn():
 	def is_empty(self):
 		return (self.actions == [])
 
+
+'''
+Each phase has a list of possible actions. The phase object will check the validity of any action passed to it by the game controller
+'''
 class Phase():
 	def __init__(player):
 		self.player = player
+		self.actions = []
 
 	def phase():
 		pass
 
+	def checkValidity(self, action):
+		return action in self.actions # Hopefully this works
 
 class DrawPhase(Phase):
 	def phase(self, player):
-		player.drawCard(player.drawRate)
+		self.actions.append(actions.DrawCard(self.player))
 
 class MainPhase(Phase):
 	def summon(index):
