@@ -7,7 +7,7 @@ class Field:
 			pass
 
 	def gameInfo(self):
-		return [len(self.player.getDeck()), len(self.player.getHand())]
+		return [len(self.player.getDeck()), len(self.player.getHand)]
 
 	def getField(self):
 		return field
