@@ -1,3 +1,9 @@
+# Window Size
+WIN_W = 1600
+WIN_H = 900
+CENTER_X = WIN_W / 2
+CENTER_Y = WIN_H / 2
+
 # Card Index
 CARD_ID = 0
 CARD_NAME = 1
@@ -17,7 +23,7 @@ IMG_WIDTH = 178
 IMG_HEIGHT = IMG_WIDTH
 
 # Deck Size
-DECK_SIZE = 20
+DECK_SIZE = 10
 DEFAULT_DECK = [2, 4, 5, 6, 7, 8, 9, 10, 11]
 
 # Hand Size
@@ -26,3 +32,7 @@ HAND_MAX = 6
 HAND_X = 150
 HAND_Y = 250
 CARD_DIST = 30
+
+# Buttons
+B_GAP = 30
+B_WIDTH = 100

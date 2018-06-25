@@ -26,6 +26,11 @@ class Player:
             for i in range(n):
                 self.hand.append(self.deck.getCard(0))
 
+    def reset_game(self):
+        self.reset_hand()
+        self.reset_deck()
+        self.startGame()
+
     def reset_hand(self):
         self.hand.clear()
         self.hand = []
