@@ -12,5 +12,10 @@ class Card():
         self.defense = cardInfo[c.DEF]
         self.EFFECT = cardInfo[c.EFFECT]
 
-    def toString(self):
-        return self.name
+    def __str__(self):
+        return {'name': self.name,
+                'image': self.image,
+                'card type': self.card_type,
+                'attribute': self.attribute,
+                'attack': self.attack,
+                'defense': self.defense}
