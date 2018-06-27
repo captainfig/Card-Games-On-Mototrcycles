@@ -36,3 +36,10 @@ CARD_DIST = 30
 # Buttons
 B_GAP = 30
 B_WIDTH = 100
+
+# Colors
+BLACK = (0, 0, 0, 255)
+WHITE = (255, 255, 255, 255)
+
+# Fonts
+F_TIMES = 'Times New Roman'

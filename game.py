@@ -34,7 +34,7 @@ class HandLayer(cocos.layer.Layer):
     def display_hand(self):
         i = 0
         for player_card in self.hand:
-            new_card = ui.CardSprite(player_card)
+            new_card = ui.CardSprite(player_card.get_game_info())
             new_card.position = (i * (new_card.width + c.CARD_DIST), 0)
             self.add(ui.GameButton(new_card.x, new_card.y, new_card.width, new_card.height))
             self.add(new_card)
@@ -59,11 +59,7 @@ class GameLayer(cocos.layer.Layer):
         self.quit_button = ui.MenuButton('Exit', 500, 150)
 
         # displays hand size
-        self.card_num = cocos.text.Label(str(len(self.hand_layer.hand)),
-                                         font_size=18,
-                                         x=800,
-                                         y=150,
-                                         color=(0, 0, 0, 255))
+        self.card_num = ui.TextBox(str(len(self.hand_layer.hand)), 18, 800, 150)
 
         self.add(self.background, 0, "Background")
         self.add(self.hand_layer, 1, "Hand")
@@ -73,9 +69,7 @@ class GameLayer(cocos.layer.Layer):
         self.add(self.card_num, 1, "card num")
 
     def update(self):
-        self.card_num.element.text = str(len(self.hand_layer.hand))
-        self.card_num.element.x = 800
-        self.card_num.element.y = 150
+        self.card_num.change_text(str(len(self.hand_layer.hand)))
         self.hand_layer.display_hand()
 
     # For button click graphic

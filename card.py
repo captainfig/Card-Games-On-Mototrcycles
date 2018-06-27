@@ -12,10 +12,10 @@ class Card():
         self.defense = cardInfo[c.DEF]
         self.EFFECT = cardInfo[c.EFFECT]
 
-    def __str__(self):
+    def get_game_info(self):
         return {'name': self.name,
                 'image': self.image,
                 'card type': self.card_type,
                 'attribute': self.attribute,
-                'attack': self.attack,
-                'defense': self.defense}
+                'attack': str(self.attack),
+                'defense': str(self.defense)}
