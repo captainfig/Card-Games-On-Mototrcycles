@@ -7,10 +7,10 @@ class Field:
             pass
 
     def gameInfo(self):
-        return [len(self.player.getDeck()), len(self.player.getHand)]
+        return [len(self.player.deck), len(self.player.hand)]
 
     def getField(self):
-        return field
+        return self.field
 
     def printField(self):
         for i in range(len(self.field)):
@@ -28,6 +28,6 @@ class Zone():
     def clearCard(self):
         self.contained_card = None;
 
-    def isEmpty():
-        if(contained_card is None):
-            return true;
+    def isEmpty(self):
+        if self.contained_card is None:
+            return True

@@ -17,6 +17,16 @@ class TextBox(cocos.cocosnode.CocosNode):
         self.label.element.text = text
 
 
+class GameCounter(TextBox):
+    def __init__(self, text, to_count, x, y):
+        self.to_count = to_count
+        self.text = text
+        super(GameCounter, self).__init__(self.text + ' ' + str(len(self.to_count)), 18, x, y)
+
+    def update(self):
+        self.change_text(self.text + ' ' + str(len(self.to_count)))
+
+
 # An invisible button
 class GameButton(cocos.cocosnode.CocosNode):
     def __init__(self, x, y, w, h):

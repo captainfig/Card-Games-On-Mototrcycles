@@ -1,72 +1,69 @@
 import constants as c
-import random, sqlite3, card, parse
+import random
+import card
+import parse
 
 
 class Player:
-
-    def __init__(self, name, deckList):
+    def __init__(self, name, deck_list):
         self.name = name
-        self.decklist = deckList
-        self.deck = Deck(self.decklist)
+        self.deck_list = deck_list
+        self.deck = Deck(self.deck_list)
         self.hand = []
-        self.startGame()
+        self.start_game()
 
-    @property
-    def getHand(self):
-        return self.hand
-
-    def getDeck(self):
-        return self.deck.deck
-
-    def getName(self):
-        return self.name
-
-    def drawCard(self, n):
+    def draw_card(self, n):
         if len(self.hand) <= c.HAND_MAX - n:
             for i in range(n):
-                self.hand.append(self.deck.getCard(0))
+                self.hand.append(self.deck.draw_card())
+
+    def remove_card(self, _card):
+        self.hand.remove(_card)
 
     def reset_game(self):
-        self.reset_hand()
-        self.reset_deck()
-        self.startGame()
-
-    def reset_hand(self):
         self.hand.clear()
-        self.hand = []
+        self.deck.reset()
+        self.start_game()
 
-    def reset_deck(self):
-        self.deck.clear()
-        self.deck = Deck(self.decklist)
-
-    def startGame(self):
+    def start_game(self):
         self.deck.shuffle()
-        self.drawCard(c.HAND_SIZE)
+        self.draw_card(c.HAND_SIZE)
 
-    def printHand(self):
-        handStr = ''
+    def print_hand(self):
+        hand_str = ''
         for i in range(len(self.hand)):
-            handStr += self.hand[i].name + ', '
-        return handStr
+            hand_str += self.hand[i].name + ', '
+        return hand_str
 
 
 class Deck:
-
-    def __init__(self, deckList):
-        self.deckList = deckList
+    def __init__(self, deck_list):
+        self.deckList = deck_list
         self.deck = []
+        self.populate_deck()
+
+    def __len__(self):
+        return len(self.deck)
+
+    def __str__(self):
+        return str(self.deck)
+
+    def populate_deck(self):
         for cardID in self.deckList:
             self.deck.append(card.Card(parse.getCard(cardID)))
 
-    def shuffle(self):
-        self.deck = random.sample(self.deck, len(self.deck))
-
-    def getCard(self, index):
-        return self.deck.pop(index);
-
-    def clear(self):
+    def reset(self):
         self.deck.clear()
+        self.populate_deck()
 
-    def printContents(self):
-        for card in self.deck:
-            print(card.name)
+    def shuffle(self):
+        random.shuffle(self.deck)
+
+    def draw_card(self):
+        return self.deck.pop(0)
+
+    def get_card(self, index):
+        return self.deck.pop(index)
+
+    def add_card(self, _card):
+        self.deck.append(_card)
